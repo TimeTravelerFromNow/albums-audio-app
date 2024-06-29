@@ -1,0 +1,44 @@
+
+
+:root {
+
+ .music {
+   background-color: rgba(110,110,110, 0.3);
+   max-width: 400px;
+   max-height: 120px;
+   margin-left: 3%;
+   .controls {
+     max-width: 100px;
+     margin-top: 4%;
+     margin-bottom: 4%;
+     .play-btn{
+       font-size: 40px;
+     }
+     .restart-btn {
+   font-size: 40px;
+     }
+   }
+
+   .warning {
+      width: 200px;
+      height: 40px;
+      text-decoration: none;
+      text-decoration-style: text-decoration-none;
+      background-color: #DD8866;
+    }
+
+    .audio-track {
+
+      max-width: 60%;
+      max-height: 80px;
+
+    }
+    .music-file {
+      font-size: 12px;
+    }
+    .play-button {
+      margin: 3%;
+    }
+ }
+
+}

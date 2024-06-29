@@ -1,0 +1,158 @@
+
+:root {
+  .glassy-form {
+    background-color: rgba(230, 230, 230, 0.3);
+    max-width: 720px
+  }
+  .album-img {
+    --album-cover-image: url_for();
+
+    background-image: var(--album-cover-image);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: scale-down;
+    background-position: center;
+  }
+
+  .btn.btn-secondary {
+        margin: auto;
+  }
+
+} // root
+
+.albums.index {
+  #albums {
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+  .album-name {
+      display: block;
+      border: 0;
+      border-top: 1px solid #ccc;
+
+      margin: 1em 0;
+      color: white;
+      text-decoration-color: black;
+      text-align: center;
+      background-color: rgba(255,255,255,0.3);
+  }
+
+  .album-spacer {
+      height: 386px;
+      background: rgba(0,0,0,0);
+  }
+  .album-cover {
+    max-width: 432px;
+    max-height: 432px;
+    min-width: 216px; // ask Julian by demonstrating this
+    margin: 1%;
+  }
+}
+  .albums.show {
+    color: white;
+    .icon-link {
+      margin: 4px;
+      max-width: 40px;
+      min-width: 40px;
+      max-height: 40px;
+      min-height: 40px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      object-fit: scale-down;
+      background-position: center;
+    }
+    .link-icons-row {
+      margin-left: 5%;
+
+    }
+    .album-story {
+        max-width: 60%;
+        margin: 4%;
+
+    }
+
+    .album-card {
+      margin-left: 4%;
+      background-color: rgba(111,111,111,0.5);
+      min-width: 70%;
+    }
+    .header-img {
+    display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 200px;
+            width: 200px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            object-fit: scale-down;
+            background-position: center;
+    }
+    .other-albums {
+      min-width: 30%;
+    }
+  } // albums show
+
+  .albums.edit {
+    .icon-link {
+      max-width: 40px;
+      min-width: 40px;
+      max-height: 40px;
+      min-height: 40px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      object-fit: scale-down;
+      background-position: center;
+    }
+    .music-col {
+      max-width: 486px;
+    }
+    .music-actions {
+
+      margin-right: 10%;
+    }
+    .album-modif {
+      margin-top: 1%;
+      margin-left: 4%;
+
+     max-width: 500px;
+    border-style: solid;
+    border-width: medium;
+    background-color: rgba(0.3 * 255,0.6 * 255,0.9 * 255,1);
+
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    }
+    .cover-image-upload {
+      // margin-left: 10%;
+      // margin-right: 10%;
+      max-width: 216px;
+      background-color: orange;
+    }
+    .album-story-field {
+      background: white;
+      text-align: left;
+
+    }
+    .music-upload {
+    //   //max-width: 60%;
+    //   margin-top: 1%;
+    //   justify-content: center;
+    // //  margin-left: 20%;
+    //   margin-right: 20%;
+          margin-right: 10%;
+    }
+    .music-form{
+      // max-width: 90%;
+      // margin: 5%;
+      // text-align: center;
+      // background-color: lightgray;
+    }
+    .icon-link-form {
+      max-width: 100px;
+    }
+    .link-field {
+      max-width: 110%;
+    }
+  }// .albums.edit

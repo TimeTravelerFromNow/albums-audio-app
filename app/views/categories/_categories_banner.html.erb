@@ -1,0 +1,19 @@
+
+<div class=" row categories-banner" >
+
+  <%= link_to  blog_posts_path do %>
+  <h5 class="category-title" <% if @category == nil %> style="--categorySelectColor: gray;" <% end %> >
+    ALL POSTS <small>(<%= BlogPost.all.where(status: "public").count %>)</small>
+  </h5>
+  <% end %>
+
+<% categories.each do |category| %>
+  <% if category.blog_posts.where(status: "public").count > 0 %>
+   <%= link_to category_path(category), class: "col-sm category" do %>
+    <h5 class="category-title" <% if @category == category %> style="--categorySelectColor: gray;" <% end %> >
+      <%= category.name.upcase %> <small>(<%= category.blog_posts.count %>)</small>
+    </h5>
+   <% end %>
+   <% end %>
+<% end %>
+</div>

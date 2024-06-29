@@ -1,0 +1,21 @@
+
+<div class="card blog_post-small">
+  <div class= "row">
+  <div class="col">
+
+      <%= link_to "edit", edit_blog_post_path(blog_post), class: "btn btn-secondary" %>
+  <small style="color: <%= blog_post.status_color %>"><%= blog_post.status %></small>
+  <strong> • </strong>
+  <% if blog_post.category %>
+    <%= blog_post.category.name %>
+  <% else %>
+    uncategorized
+  <% end %>
+
+  </div>
+ <div class="col">
+  <strong class='card-title  text-dark'><%= blog_post.title %></strong>
+  <div class='text-secondary mb-0'><%= blog_post.description.truncate(30) %> </div>
+  </div>
+  </div>
+</div>

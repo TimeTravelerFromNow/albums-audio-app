@@ -1,0 +1,24 @@
+<div class="music-form card d-none">
+  <%= form_for music, id: music.id, :html => { :multipart => true } do |form| %>
+              <%= form.label "name" %>
+              <%= form.text_field :name, value: music.name %>
+
+              <%= form.label "file" %>
+              <%= form.file_field :music_file %>
+
+              <div class="mt-3 d-flex justify-content-between">
+                <div>
+                  <%= form.submit class: 'btn btn-primary' %>
+                </div>
+
+                  <div class="music-file card">
+                  Src file:
+                  <%= music.music_file %>
+                  <%= rails_blob_url music.music_file %>
+                  </div>
+                <% end %>
+                <%= link_to 'Delete', music_path(music),
+                  class: 'btn btn-danger',
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              </div>
+</div>

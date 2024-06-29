@@ -1,0 +1,7 @@
+
+
+<div id="albums" class=" row d-flex flex-row justify-content-center">
+  <% @albums.each do |album| %>
+    <%= render "album_cover", album: album %>
+  <% end %>
+</div>

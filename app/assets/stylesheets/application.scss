@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+$primary: #5588ff;
+
+@import "bootstrap";
+@import "home_page";
+@import "album";
+@import "music";
+@import "font-awesome";
+@import "categories";
+
+.app-css.top-bar {
+
+    .nav-link.active {
+      color: white;
+      text-decoration: none;
+      font-size: 25px;
+    }
+
+    ul li::after{
+      content: '';
+      width: 0%;
+      height: 2px;
+      background: white;
+      display: block;
+      margin: auto;
+      transition: 0.4s;
+    }
+     ul li:hover::after {
+      width: 100%;
+    }
+    ul li{
+      flex: 1;
+      text-align: center;
+      letter-spacing: 5px;
+
+    }
+    ul li{
+      list-style: none;
+      display: inline-block;
+      padding: 8px 40px;
+      position: bottom;
+    }
+
+    navbar-nav{
+      display: flex;
+      // padding-top: 10%;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar-toggler {
+
+      color: white;
+      text-decoration-color: white;
+
+        background-color: white;
+      .navbar-toggler-icon {
+      }
+    }
+    justify-content:center;
+
+    border-color: white;
+    background: black;
+
+    #navbarSupportedContent {
+     justify-content: center;
+    }
+}
+
+.visitor-message
+{
+  color: orange;
+  padding: 1%;
+  margin: 1%;
+}
+
+.background {
+    color: #999999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+}

@@ -1,0 +1,74 @@
+<div class="uncategorized-blog_posts card" >
+
+
+  <div class="unsorted_blogs d-none">
+    <div class="bp-label h4">
+      <strong>unsorted</strong> blog posts
+      </div>
+  <% @blog_posts.where(:category => nil).each do  |blog_post| %>
+
+      <%= render "blog_posts/bp_card", blog_post: blog_post %>
+
+      <p style="color: <%= blog_post.status_color %>">
+      <%= blog_post.status %>
+      </p>
+
+      <%= form_with(model: [@category, blog_post]) do |form| %>
+
+
+        <%= form.hidden_field :category_id, value: @category.id %>
+        <%= form.hidden_field :category, value: @category %>
+        <%= form.submit "Move to " + @category.name, class: 'btn btn-dark' %>
+
+        <%= link_to "edit", edit_blog_post_path(blog_post), class: 'btn btn-primary'%>
+      <% end %>
+
+  <% end %>
+  </div>
+
+  <div class="all-blogs">
+    <div class="bp-label h4">
+      <strong>all other</strong> blog posts
+      </div>
+    <% @blog_posts.where.not(:category => @category).each do  |blog_post| %>
+
+        <%= render "blog_posts/bp_card", blog_post: blog_post %>
+
+        <p style="color: <%= blog_post.status_color %>">
+        <%= blog_post.status %>
+        </p>
+
+        <%= form_with(model: [@category, blog_post]) do |form| %>
+
+
+          <%= form.hidden_field :category_id, value: @category.id %>
+          <%= form.hidden_field :category, value: @category %>
+          <%= form.submit "Move to " + @category.name, class: 'btn btn-dark' %>
+
+          <%= link_to "edit", edit_blog_post_path(blog_post), class: 'btn btn-primary'%>
+        <% end %>
+
+    <% end %>
+
+    <% @blog_posts.where(:category => nil).each do  |blog_post| %>
+      <div class="card">
+        <%= render "admin/blog_posts/bp_card", blog_post: blog_post %>
+
+        <p style="color: <%= blog_post.status_color %>">
+        <%= blog_post.status %>
+        </p>
+
+        <%= form_with(model: [@category, blog_post]) do |form| %>
+
+
+          <%= form.hidden_field :category_id, value: @category.id %>
+          <%= form.hidden_field :category, value: @category %>
+          <%= form.submit "Move to " + @category.name, class: 'btn btn-dark' %>
+
+          <%= link_to "edit", edit_blog_post_path(blog_post), class: 'btn btn-primary'%>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

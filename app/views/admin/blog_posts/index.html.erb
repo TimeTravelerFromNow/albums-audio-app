@@ -1,0 +1,19 @@
+
+
+<div class="col">
+
+<%= render "categories/categories_banner", categories: @categories %>
+
+<div id="blog_posts" class=" row d-flex flex-row justify-content-center">
+
+    <% @blog_posts.where(status: "public").order(created_at: :desc).each do |blog_post| %>
+
+      <%= link_to blog_post_path(blog_post), class: 'text-decoration-none col-sm blog_post card' do  %>
+        <%= render "bp_card", blog_post: blog_post %>
+      <% end %>
+    <% end %>
+
+</div>
+
+
+</div>

@@ -1,0 +1,42 @@
+<div class="container-fluid mt-3">
+
+<div class="card post-card mb-3">
+  <% if @blog_post.header_image.present? %>
+      <div class="header-img" style="background-image: url(<%= url_for( @blog_post.header_image) %>);">
+      </div>
+      <% end %>
+      <div class="card-body">
+        <div class="p-4">
+          <div class="center">
+            <div class="col-md-10">
+              <h1 class="center"><%=  @blog_post.title %></h1>
+                    Created  <%= time_tag( @blog_post.created_at) %>
+              <hr>
+              <p class="center"><%=  @blog_post.description %></p>
+              <hr>
+            </div>
+          </div>
+              <%  @blog_post.elements.each do |elem| %>
+
+                  <% if elem.paragraph? %>
+                    <%= elem.content %>
+                  <% elsif elem.image? %>
+                  <div class="image">
+                    <% if elem.image.persisted? %>
+                    <%= image_tag(elem.image) %>
+                    <% end %>
+                  </div>
+                  <% end %>
+                <% end %><br>
+
+
+            <div class="text-center">
+              updated <%= time_tag( @blog_post.updated_at) %>
+            </div>
+        </div>
+
+      </div>
+</div>
+
+
+</div>

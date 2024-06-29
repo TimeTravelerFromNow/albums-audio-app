@@ -1,0 +1,33 @@
+<div class="blogs-for-category card">
+  <% if category.blog_posts.count == 0 %>
+    <div class="card">
+      No blog_posts belonging to this category
+      </div>
+  <% else %>
+    <div class="bp-label h4">
+      <strong><%= category.name %></strong> blog posts
+      </div>
+
+    <% category.blog_posts.each do |bp| %>
+      <div class="card">
+          <%= form_with(model: [category, bp]) do |form| %>
+
+
+          <%= render "admin/blog_posts/bp_card", blog_post: bp %>
+
+          <p style="color: <%= bp.status_color %>">
+          <%= bp.status %>
+          </p>
+
+
+            <%= form.hidden_field :category_id, value: nil %>
+            <%= form.hidden_field :category, value: nil %>
+            <%= form.submit "Remove from " + @category.name, class: 'btn btn-dark' %>
+            <%= link_to "edit", edit_blog_post_path(bp), class: 'btn btn-primary'%>
+
+          <% end %>
+      </div>
+    <% end %>
+
+  <% end %>
+</div>

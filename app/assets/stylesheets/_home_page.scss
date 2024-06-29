@@ -1,0 +1,40 @@
+
+.home_page.index {
+
+#blog_post {
+  background-color: rgba(0.3,0.5,0.6,0.5);
+  border-width: medium;
+  border-style: solid;
+}
+#albums {
+  background-color: rgba(0.9,0.0,1,0.5);
+  border-width: medium;
+  border-style: solid;
+
+    .card.title {
+      font-size: 48px;
+    }
+    columns: 300px 2;
+}
+.Fpagetext {
+  width: 90%;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+}
+.AdminButton {
+  opacity: 0;
+}
+.AdminButton:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: black;
+}
+.ButtonSpecific {
+  text-decoration: none;
+  color: black;
+}

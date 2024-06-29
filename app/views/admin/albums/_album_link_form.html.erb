@@ -1,0 +1,44 @@
+<div class="mb-3 card">
+  <div class= "row">
+        <% (0..2).each do |pos| %>
+          <% if @hardcoded_positions[pos] %>
+            <% @album.elements.where(:position => pos).each do |e| %>
+            <div class="card icon-link-form">
+              <%= form_with(model: [@album, e], html: { class: 'float-left mr-2'}) do |form| %>
+                <%= form.hidden_field :kind, value: 'ext_link' %>
+                <%= form.hidden_field :position, value: pos %>
+                <small>
+                <%= form.text_field :ext_link, class:"link-field"%>
+                </small>
+                <% if Element.icon_path_for(pos) %>
+                <a href="<%= e.ext_link%>" target="_blank" rel="noreferrer noopener" class="card icon-link" style="background-image: url(<%= asset_path Element.icon_path_for(pos) %>)"> </a>
+                <% end %>
+                <%= form.submit "update", class:"btn btn-primary" %>
+                <%= link_to 'Delete', album_element_path(@album, e),
+                  class: 'btn btn-dark',
+                  data: { turbo_method: :delete} %>
+                    </div>
+              <% end %>
+
+            <% end %>
+
+          <% else %>
+
+            <div class="card icon-link-form">
+              <small> link: </small>
+              <%= form_with(model: [@album, @element], html: { class: 'float-left mr-2'}) do |form| %>
+                <%= form.hidden_field :kind, value: 'ext_link' %>
+                <%= form.hidden_field :position, value: pos %>
+                <small>
+                <%= form.text_field :ext_link, class:"link-field" %>
+                </small>
+                <% if Element.icon_path_for(pos) %>
+                <div class="card icon-link" style="background-image: url(<%= asset_path Element.icon_path_for(pos) %>)"> </div>
+                <% end %>
+                <%= form.submit "add link", class:"btn btn-primary" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
+</div>

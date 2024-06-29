@@ -1,0 +1,30 @@
+
+<div data-controller="audio">
+
+  <% album.musics.order(position: :asc).each do |music| %>
+
+    <% if music.persisted? %>
+      <div class="music-form card">
+        <div> <%= music.position + 1 %>. </div>
+          <%= form_with(model: [album, music]) do |form| %>
+                  <%= form.label "name" %>
+                  <%= form.text_field :name, value: music.name %>
+
+                  <%= form.label "file" %>
+                  <%= form.file_field :music_file %>
+
+                  <div class="mt-3 d-flex justify-content-between">
+                    <div>
+                      <%= form.submit class: 'btn btn-primary' %>
+                    </div>
+
+                    <%= link_to 'Delete', album_music_path(album, music),
+                      class: 'btn btn-danger',
+                      data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  </div>
+          <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+</div>

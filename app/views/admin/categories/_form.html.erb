@@ -1,0 +1,42 @@
+
+<div class="category-form">
+
+<h4 class="card"> editing category: <strong> <%= category.name %> </strong> </h4>
+
+<%= form_with(model: category) do |form| %>
+  <% if category.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+  <%= form.label :category_image %>
+  <%= form.file_field :category_image, class: 'form-control' %>
+  <% if category.category_image.present? %>
+    <small>current image:</small>
+    <br>
+    <%= image_tag(category.category_image, class:"category-image") %>
+  <% end %>
+  </div>
+  <div>
+    <%= form.submit "update", class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

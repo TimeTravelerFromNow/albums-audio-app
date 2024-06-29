@@ -1,0 +1,10 @@
+<div id="<%= dom_id category %>"
+  class="category-header"
+  <% if category.category_image.present? %>
+  style= "--backgroundImg: url(<%= url_for(category.category_image) %> ); "
+    <% end %> >
+
+  <h3 class="title" >
+    <%= category.name %>
+  </h3>
+</div>

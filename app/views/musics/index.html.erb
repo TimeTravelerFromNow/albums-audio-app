@@ -1,0 +1,21 @@
+
+
+<h1>Musics</h1>
+<p> <%= @musics.count %> Songs </p>
+<p style="color: green"><%= notice %></p>
+<div id="musics" class="row" data-controller="audio " >
+  <% @musics.each do |music| %>
+    <% if music.persisted? %>\
+
+      <%= render  music %>
+      <%= render "form", album: @album, music: music %>
+    <% end %>
+  <% end %>
+</div>
+
+
+<div class="bottom">
+<%= link_to "Home Page", home_page_index_path, class:"btn btn-secondary"%>
+<%= link_to "Albums", albums_path, class:"btn btn-secondary" %>
+<%= link_to "Blog posts", blog_posts_path, class:"btn btn-secondary" %>
+</div>

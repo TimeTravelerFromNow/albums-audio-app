@@ -1,0 +1,11 @@
+
+<% bg_img = "" %>
+<% if album.album_cover_image.present? %>
+  <% bg_img = url_for(album.album_cover_image) %>
+<% end %>
+<div class = "card album-small album-img" style ="--album-cover-image: url(<%= bg_img %>);">
+
+    <%= album.name %>
+    <%= link_to "edit", edit_album_path(album), class: "btn btn-secondary" %>
+
+</div>

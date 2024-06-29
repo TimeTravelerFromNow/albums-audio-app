@@ -1,0 +1,28 @@
+
+  <div class="row d-flex justify-content-begin">
+
+  <div class="col album-modif mb-3 " >
+        <%= render "form", album: @album %>
+
+        <%= render "album_link_form" %>
+
+        <%= link_to "Visitor #{ @album.name } Page", @album, class: "btn btn-primary" %>
+        <%= link_to "Back to Admin Dashboard", dashboard_index_path, class: "btn btn-primary" %>
+        <%= link_to "delete album", @album, class: "btn btn-danger",
+        data: { turbo_method: :delete, turbo_confirm: "Deleting will also delete associated music."}%>
+  </div>
+
+  <div class="col glassy-form">
+  <div class="card music-upload" style="max-width: 300px;">
+    <div> UPLOAD MUSIC </div>
+    <%= form_with(model: [@album, @music]) do |form| %>
+      <%= form.file_field :music_file %>
+      <%= form.hidden_field :album_id, value: @album.id %>
+      <%= form.hidden_field :name, value: nil %>
+      <br>
+      <%= form.submit "Add Music", class: 'btn btn-dark' %>
+    <% end %>
+  </div>
+  <%= render "album_music", album: @album %>
+  </div>
+</div>

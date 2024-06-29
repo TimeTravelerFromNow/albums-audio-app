@@ -1,0 +1,28 @@
+<div class="album-card card col col-md-2 col-sm">
+
+<div class="album-img header-img" style="
+  --album-cover-image: url(<%= url_for(@album.header_img_url) %>)">
+</div>
+
+<h6> <%= @album.name %> </h6>
+<div class= "row link-icons-row" >
+  <% @album.elements.order(position: :asc).each do |e| %>
+  <% if e.icon_path %>
+  <a href="<%= e.ext_link %>" target="_blank" rel="noreferrer noopener" class="card icon-link" style="background-image: url(<%= asset_path e.icon_path %>)"> </a>
+  <% end %>
+  <% end %>
+</div>
+
+<div data-controller="audio">
+  <% @album.musics.order(position: :asc).each do |music| %>
+
+    <%= render music %>
+
+  <% end %>
+</div>
+
+<div class="album-story">
+  <%= @album.story %>
+</div>
+<%= link_to "Back to albums", albums_path, class:"btn btn-primary" %>
+</div>

@@ -1,0 +1,78 @@
+
+<% blog_post.elements.order(position: :asc).each do |element| %>
+  <% if element.persisted? %>
+  <% if element.paragraph? %>
+  <div class="paragraph element mb-3 mb-4"
+  data-controller="paragraph"
+  data-action="paragraph:click->elements#editParagraph"
+  id="<%= element.position %>">
+
+    <div class="paragraph-content" data-action="click->paragraph#click">
+      <% if element.content.present? %>
+      <%= element.content %>
+      <% else %>
+      click to add content!
+      <% end %>
+    </div>
+
+    <div class="paragraph-form d-none">
+        <%= form_with(model: [blog_post, element]) do |form| %>
+                <%= form.rich_text_area :content %>
+
+                <div class="mt-3 d-flex justify-content-between">
+                  <div>
+                    <%= form.submit class: 'btn btn-primary' %>
+                  </div>
+                </div>
+                <%= link_to "Cancel", edit_blog_post_path(element.blog_post), class: "cancel btn btn-dark", method: :get %>
+                <%= link_to 'Delete', blog_post_element_path(blog_post, element),
+                  class: 'btn btn-danger',
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <%= link_to "move up",
+                swap_up_blog_post_element_path(blog_post, element),
+                class: 'btn btn-primary' %>
+                <%= link_to "move down",
+                swap_down_blog_post_element_path(blog_post, element),
+                class: 'btn btn-primary' %>
+        <% end %>
+              </div>
+</div>
+<% end %>
+
+<% if element.image? %>
+    <div class="image element"
+    id="<%= element.position %>"
+    data-controller="imgelms"
+    data-action="imgelms:click->elements#selectImage">
+                <% if element.image.present? %>
+                <div data-action="click->imgelms#click">
+                  <%= image_tag(element.image) %>
+
+                  <%= link_to 'Delete', blog_post_element_path(blog_post, element),
+                    class: 'delete-btn btn btn-danger',
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                </div>
+                <% else %>
+                  <%= form_with(model: [blog_post, element]) do |form| %>
+                    <div class="mt-3">
+                      <%= form.file_field :image %>
+                      <%= form.submit class: 'btn btn-primary' %>
+                      <%= link_to 'Delete', blog_post_element_path(blog_post, element),
+                        class: 'btn btn-dark',
+                        data: { turbo_method: :delete} %>
+                    </div>
+
+                  <% end %>
+                <% end %>
+                <%= link_to "move up",
+                swap_up_blog_post_element_path(blog_post, element),
+                class: 'btn btn-primary' %>
+                <%= link_to "move down",
+                swap_down_blog_post_element_path(blog_post, element),
+                class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+<%  end %>
+
+<% end %>

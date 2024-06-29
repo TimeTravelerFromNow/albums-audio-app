@@ -1,0 +1,49 @@
+
+<div class="blog_post-form card mb-5">
+  <% if @blog_post.header_image.present? %>
+    <small>header image:</small>
+    <%= image_tag(@blog_post.header_image, width: '200px') %>
+  <% end %>
+  <div class="card-header text-right">Editing Blog Post</div>
+  <%= render "form", blog_post: @blog_post %>
+  <div>
+    <%= link_to "View this Blog", @blog_post, class: "btn btn-primary" %>
+    <%= link_to "Back to Admin Dashboard", dashboard_index_path, class: "btn btn-primary" %>
+    <%= link_to "delete", @blog_post, class: "btn btn-danger",
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+  </div>
+
+</div>
+
+<div class="blog_post-content card mb-5">
+
+  <div class="card-header text-right">
+    <% if @blog_post.public? %>
+    <b>Published</b> <%= time_ago_in_words(@blog_post.created_at) %> ago
+    updated <%= time_ago_in_words(@blog_post.updated_at) %>
+    <% elsif @blog_post.archived? %>
+    Archived
+    <% elsif @blog_post.private? %>
+    Private
+    <% end %>
+  </div>
+
+  <div class=" col md-5" data-controller="elements">
+    <%= render "bp_elements", blog_post: @blog_post %>
+  </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="m-3">
+        <%= form_with(model: [@blog_post, @element], html: { class: 'float-left mr-2'}) do |form| %>
+        <%= form.hidden_field :kind, value: 'paragraph' %>
+        <%= form.submit "New Text", class: 'new-element-btn btn btn-primary' %>
+        <% end %>
+      </div>
+      <div class="m-3">
+        <%= form_with(model: [@blog_post, @element]) do |form| %>
+        <%= form.hidden_field :kind, value: 'image' %>
+        <%= form.submit "New Image", class: 'new-element-btn btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+</div>

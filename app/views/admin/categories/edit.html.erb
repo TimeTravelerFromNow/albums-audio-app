@@ -1,0 +1,15 @@
+
+<div class="row">
+<%= render "form", category: @category %>
+
+<%= render "blogs_for", category: @category %>
+
+<%= render "uncategorized_blogs", blog_posts: @blog_posts %>
+
+<div>
+  <%= link_to "Visitor #{ @category.name } Page", @category, class: "btn btn-primary" %>
+  <%= link_to "Back to Admin Dashboard", dashboard_index_path, class: "btn btn-primary" %>
+
+  <%= link_to "Destroy this category", @category, method: :delete, class: "btn btn-danger" %>
+</div>
+</div>

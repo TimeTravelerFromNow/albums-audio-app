@@ -1,0 +1,10 @@
+
+
+  <% if blog_post.header_image.present? %>
+  <div class="header-img" style="background-image: url(<%= url_for(blog_post.header_image) %>);">
+
+  </div>
+  <% end %>
+
+  <h5 class='card-title mb-1 text-dark'><%= blog_post.title %></h5>
+  <p class='text-secondary mb-0'><%= blog_post.description %> </p>

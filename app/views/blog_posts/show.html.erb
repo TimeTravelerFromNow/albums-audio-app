@@ -1,0 +1,45 @@
+<div class="container-fluid mt-3">
+
+  <div class="card post-card mb-3">
+    <% if @blog_post.header_image.present? %>
+    <%= image_tag @blog_post.header_image, class: 'header-img'%>
+    <% end %>
+    <div class="card-body">
+      <div class="p-4">
+        <div class="center">
+          <div class="col-md-10">
+            <h1 class="center"><%=  @blog_post.title %></h1>
+            Created  <%= time_tag( @blog_post.created_at) %>
+            <hr>
+            <p class="center"><%= @blog_post.description %></p>
+            <hr>
+          </div>
+        </div>
+        <%  @blog_post.elements.order(position: :asc).each do |elem| %>
+
+        <% if elem.paragraph? %>
+        <%= elem.content %>
+        <% elsif elem.image? %>
+        <div class="image">
+          <% if elem.image.persisted? %>
+          <%= image_tag elem.image, style: 'max-width: 80%;' %>
+          <% end %>
+        </div>
+        <% end %>
+        <% end %><br>
+
+
+        <div class="text-center">
+          updated <%= time_tag( @blog_post.updated_at) %>
+        </div>
+      </div>
+
+    </div>
+    <div  id="blog_view_actions" class="container ">
+
+      <div class="d-flex justify-content-center">
+        <%= link_to 'back to blogs', blog_posts_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

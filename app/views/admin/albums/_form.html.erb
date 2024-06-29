@@ -1,0 +1,41 @@
+
+<div class= "row" >
+  <p style="color: green"><%= notice %></p>
+<%= form_with(model: album) do |form| %>
+  <% if album.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+        <% album.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="cover-image-upload card">
+
+      <% if @album.album_cover_image.present? %>
+        <%= image_tag @album.album_cover_image, height: "216px", style: "object-fit: scale-down;" %>
+      <% end %>
+      <%= form.label :album_cover_image, style: "display: block" %>
+      <%= form.file_field :album_cover_image %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, :required => true %>
+  </div>
+
+  <div class="album-story-field card">
+      <%= form.label :story %>
+      <%= form.rich_text_area :story %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

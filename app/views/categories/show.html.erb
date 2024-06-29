@@ -1,0 +1,15 @@
+
+<%= render "categories_banner", categories: @categories %>
+
+<div id="blog_posts">
+
+    <% @blog_posts.each do  |blog_post| %>
+
+      <%= link_to blog_post_path(blog_post), class: 'blog_post card text-decoration-none' do  %>
+        <%= render "blog_posts/bp_card", blog_post: blog_post %>
+      <% end %>
+    <% end %>
+    <% if @blog_posts.count == 0 %>
+    <div class="card visitor-message"> No blog posts belong to this category yet...check back when the admin has updated the page! </div>
+    <% end %>
+</div>

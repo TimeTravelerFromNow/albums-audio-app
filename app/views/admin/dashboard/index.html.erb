@@ -1,0 +1,68 @@
+
+<p style="color: green"><%= notice %></p>
+<div class=" row d-flex flex-row " style="margin-left: 4%">
+
+  <div id="categories" class="dashboard-panel col-sm">
+    <div class="h4 title"> blog categories </div>
+    <% @categories.each do |category| %>
+
+    <div class="card category-card">
+      <h6> <%= category.name %> </h6>
+      <%= category.description %>
+      <%= link_to "edit", edit_category_path(category), class:"btn btn-secondary" %>
+      <%= link_to "delete", category, class:"btn btn-danger",
+      data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+    </div>
+    <% end %>
+
+    <strong><%= BlogPost.public_count %></strong> Public Articles and <strong><%= Category.all.count %></strong> Categories.
+
+    <%= link_to 'new category', new_category_path, class:"btn btn-primary" %>
+
+    <div class="h4 title"> blog posts </div>
+
+    <%= link_to 'new blog post', new_blog_post_path, class:"btn btn-primary"%>
+    <% @blog_posts.each do |blog_post| %>
+
+    <%= render "admin/blog_posts/bp_small", blog_post: blog_post %>
+
+    <% end %>
+  </div>
+
+
+  <div  id="albums" class="dashboard-panel col-sm">
+
+    <div class="h4 title"> albums </div>
+    <% @albums.each do |album| %>
+
+    <% bg_img = "" %>
+    <% if album.album_cover_image.present? %>
+    <% bg_img = url_for(album.album_cover_image) %>
+    <% end %>
+    <div class = "card album-small album-img" style ="--album-cover-image: url(<%= bg_img %>);">
+
+      <%= album.name %>
+      <%= link_to "edit", edit_album_path(album), class: "btn btn-secondary" %>
+
+    </div>
+
+    <% end %>
+
+    <div class=" category-new card">
+      <%= link_to 'new album', new_album_path, class:"btn btn-primary"%>
+    </div>
+  </div>
+
+  <div id="musics" class="dashboard-panel col-sm">
+    <h1>Musics</h1>
+    <p> <%= @musics.count %> Songs </p>
+    <div id="musics" class="row" data-controller="audio">
+      <% @musics.each do |music| %>
+      <% if music.persisted? %>
+      <%= render  music %>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

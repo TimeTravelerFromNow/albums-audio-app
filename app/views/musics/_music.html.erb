@@ -1,0 +1,32 @@
+
+<div id="<%= dom_id music %>" class="music card" data-controller="music" data-action="music:playButtonPressed->audio#playPressed music:restartPressed->audio#restartPressed">
+  <% if (music.music_file.signed_id) %>
+
+  <audio src = <%= rails_blob_url music.music_file %>, data-music-target="audio">
+   </audio>
+   <p>
+     <%= music.name %>
+   </p>
+
+<div class="row d-flex">
+
+    <div class="col controls m-3">
+          <i class="restart-btn fa-solid fa-backward-step "
+          data-music-target="startButton"
+          data-action="click->music#restartPressed"></i>
+          <i class="play-btn play-button fa-solid fa-play play-btn "
+          data-music-target="playButton"
+          data-action="click->music#playButtonPressed"></i>
+      </div>
+
+      <div class="mb-3 col">
+        <canvas class="audio-track" data-music-target="intensityCanvas"></canvas >
+      </div>
+
+  <% else %>
+    <div class="warning">
+      music signed id not valid, try to re-create it.
+    </div>
+  <% end %>
+</div>
+</div>
