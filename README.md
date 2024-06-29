@@ -21,3 +21,5 @@ If you use this, please give credit and change up the styles since it's being us
 <img src="https://github.com/TimeTravelerFromNow/albums-audio-app/assets/98575184/81570ab7-b223-4e9d-b268-755443f0b8cd" width="200" />
 
 5. Change up the styles in `app/assets/stylesheets`!
+6. [Youtube video walkthrough](https://youtu.be/rlmyUE9BonQ) where I talk about how the javascript works to play audio:
+
